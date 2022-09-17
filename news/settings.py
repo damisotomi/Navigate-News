@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-@dn2a)mj%zkkay%&%_)aveg99zmxbqzhh7jq+*5=gpo0v7#!-_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://sotomi-navigatenews.herokuapp.com/','http://127.0.0.1:8000/','127.0.0.1:8000/']
+ALLOWED_HOSTS = ['https://sotomi-navigatenews.herokuapp.com/','sotomi-navigatenews.herokuapp.com','http://127.0.0.1:8000/','127.0.0.1:8000/']
 
 
 # Application definition
