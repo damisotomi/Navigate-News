@@ -1,0 +1,4 @@
+I had an issue with my files that i moved to a my new system.
+
+I realized that what i needed to do was go into the  pyvenv.cfg file created in the virtual env and replace the home variable path to the path 
+my python interpreter or executable is. which is C:\Users\Sotomi Oluwadamilola\AppData\Local\Programs\Python\Python310

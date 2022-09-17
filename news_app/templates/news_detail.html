@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    Comments
+{% endblock title %}
+
+
+{% block content %}
+{% if news.comments.all %}
+<h4>Top Comments </h4>
+    <p></P>
+        <table class="table table-bordered table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Comment</th>
+                    <th scope="col">Author</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for comment in news.comments.all%}
+                <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{ comment.comment }}</td>
+                    <td>{{ comment.author }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p><strong><h3> No comment posted yet </h3></strong></p>
+    {% endif %}
+    <p></P>
+    <a href="{% url 'comment_form' news.id %}"><button>Add New comment</button></a>
+    <p></p>
+    <a href="{% url 'news'%}"><button>Go back to News list</button> </a> 
+{% endblock content  %}

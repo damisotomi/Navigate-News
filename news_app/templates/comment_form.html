@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Add Comment{% endblock title %}
+
+
+{% block content %}
+
+<h4>Share Your Thoughts on <em>"{{title}}"</em></h4>
+<p></P>
+
+<form enctype='multipart/form-data' method="post">
+
+<!-- Security token -->
+
+{% csrf_token %}
+
+{% comment %} {{form|crispy}} {% endcomment %}
+{{form|crispy}}
+
+
+<input type="submit" value="Add Comment" class="btn btn-primary">
+
+</form>
+
+<p></p>
+
+<a href="{% url 'news_detail' pk %}"> <button>Cancel</button> </a>
+
+{% endblock %}
+
+
+
+

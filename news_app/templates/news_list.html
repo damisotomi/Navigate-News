@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+
+
+{% block title %}
+    Latest News
+{% endblock title %}
+
+
+{% block content %}
+<div class="container"> 
+{% comment %} <form enctype='multipart/form-data' method="GET">
+    <!-- Security token -->
+    {% csrf_token %}
+    {{filter.form.as_p}}
+
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>  {% endcomment %}
+
+
+<form  enctype='multipart/form-data' method="GET">
+    {{filter.form}}
+    {% comment %} {{filter.form|bootstrap}} {% endcomment %}
+    <p></p>
+    <button type="submit" class="btn btn-primary">Search</button>
+</form> 
+
+
+{% if news_queryset %}
+<h2>Latest News. </h2>
+    <p></P>
+        <table class="table table-bordered table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Author</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Text</th>
+                    <th scope="col">Url</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% comment %} filter.qs {% endcomment %}
+                {% for news in news_queryset %}
+                <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td><a href="{{news.get_absolute_url}}">{{ news.title }}</a> </td>
+                    <td>{{ news.author }}</td>
+                    <td>{{news.type}}</td>
+                    <td>{{news.text}}</td>
+                    <td><a href="{{news.url}}"> Link </a> </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p> No News available </p>
+    {% endif %}
+</div> 
+{% endblock content  %}
+ 
