@@ -144,48 +144,48 @@ class CommentViewSet(ModelViewSet):
 
 # Used to load the db with the first 50 news. Only to be used when the db is completely empty. 
 
-def load_db(request):
-    last_news_item=requests.get("https://hacker-news.firebaseio.com/v0/maxitem.json?print=pretty").json()
-    count=0
-    while count<50:
-        link="https://hacker-news.firebaseio.com/v0/item/{}.json?print=pretty".format(last_news_item)
-        id_response = requests.get(link).json()
+# def load_db(request):
+#     last_news_item=requests.get("https://hacker-news.firebaseio.com/v0/maxitem.json?print=pretty").json()
+#     count=0
+#     while count<50:
+#         link="https://hacker-news.firebaseio.com/v0/item/{}.json?print=pretty".format(last_news_item)
+#         id_response = requests.get(link).json()
 
-        title_check= id_response.get('title', None)
+#         title_check= id_response.get('title', None)
 
-        if not title_check:
-            last_news_item-=1
-            continue
+#         if not title_check:
+#             last_news_item-=1
+#             continue
         
-        if id_response['type']=='comment':
-            last_news_item-=1
-            continue
-        else:
-            with transaction.atomic():
-                news = News()
-                news.item_id = id_response['id']
-                news.author = id_response.get('by', None)
-                news.descendants = id_response.get('descendants', None)
-                news.score = id_response.get('score', None)
-                news.title = id_response.get('title', None)
-                news.type = id_response['type']
-                news.url = id_response.get('url', None)
-                news.save()
+#         if id_response['type']=='comment':
+#             last_news_item-=1
+#             continue
+#         else:
+#             with transaction.atomic():
+#                 news = News()
+#                 news.item_id = id_response['id']
+#                 news.author = id_response.get('by', None)
+#                 news.descendants = id_response.get('descendants', None)
+#                 news.score = id_response.get('score', None)
+#                 news.title = id_response.get('title', None)
+#                 news.type = id_response['type']
+#                 news.url = id_response.get('url', None)
+#                 news.save()
 
-                kids = id_response.get('kids', None)
-                if kids:
-                    for comment_id in id_response['kids'][0:10]:
-                        link = "https://hacker-news.firebaseio.com/v0/item/{}.json?print=pretty".format(
-                            comment_id)
-                        comment_response = requests.get(link).json()
-                        comment = Comment()
-                        comment.item_id = comment_response['id']
-                        comment.author = comment_response.get('by', None)
-                        comment.comment = comment_response.get('text', None)
-                        comment.type = comment_response['type']
-                        comment.news = news
-                        comment.save()
-            last_news_item-=1
-            count+=1
-    return render(request,'test.html')
+#                 kids = id_response.get('kids', None)
+#                 if kids:
+#                     for comment_id in id_response['kids'][0:10]:
+#                         link = "https://hacker-news.firebaseio.com/v0/item/{}.json?print=pretty".format(
+#                             comment_id)
+#                         comment_response = requests.get(link).json()
+#                         comment = Comment()
+#                         comment.item_id = comment_response['id']
+#                         comment.author = comment_response.get('by', None)
+#                         comment.comment = comment_response.get('text', None)
+#                         comment.type = comment_response['type']
+#                         comment.news = news
+#                         comment.save()
+#             last_news_item-=1
+#             count+=1
+#     return render(request,'test.html')
 
