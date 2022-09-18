@@ -20,10 +20,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-@dn2a)mj%zkkay%&%_)aveg99zmxbqzhh7jq+*5=gpo0v7#!-_'
+
+import os
+SECRET_KEY=os.environ.get('DJANGO_SECRET_KEY','django-insecure-@dn2a)mj%zkkay%&%_)aveg99zmxbqzhh7jq+*5=gpo0v7#!-_')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+
+DEBUG =os.environ.get('DJANGO_DEBUG','')!='False'
 
 ALLOWED_HOSTS = ['127.0.0.1','https://sotomi-navigatenews.herokuapp.com/','sotomi-navigatenews.herokuapp.com','http://127.0.0.1:8000/','127.0.0.1:8000/']
 
