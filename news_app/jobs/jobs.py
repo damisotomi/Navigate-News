@@ -21,6 +21,12 @@ def schedule_api():
             max_item_id+1)
 
         id_response = requests.get(link).json()
+        
+        title_check= id_response.get('title', None)
+
+        if not title_check:
+            max_item_id+=1
+            continue
 
         if id_response['id'] in list(News.objects.values_list(flat=True)):
             max_item_id+=1
@@ -34,6 +40,8 @@ def schedule_api():
             max_item_id += 1
             pprint(max_item_id)
             continue
+
+
 
         else:
             with transaction.atomic():
