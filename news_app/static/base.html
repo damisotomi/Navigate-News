@@ -58,6 +58,7 @@
         <div class="pagination">
             <span class="page-links">
                 {% if page_obj.has_previous %}
+                    <a href="{{ request.path }}?page={{1}}">Go to First Page </a><br>
                     <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">&ltPrev</a>
                 {% endif %}
                 <span class="page-current">
