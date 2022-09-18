@@ -26,7 +26,8 @@ SECRET_KEY=os.environ.get('DJANGO_SECRET_KEY','django-insecure-@dn2a)mj%zkkay%&%
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG =os.environ.get('DJANGO_DEBUG','')!='False'
+# DEBUG =os.environ.get('DJANGO_DEBUG','')!='False'
+DEBUG =False
 
 ALLOWED_HOSTS = ['127.0.0.1','https://sotomi-navigatenews.herokuapp.com/','sotomi-navigatenews.herokuapp.com','http://127.0.0.1:8000/','127.0.0.1:8000/']
 
