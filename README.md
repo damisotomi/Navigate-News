@@ -3,7 +3,7 @@ A  powerful web application that curates different NEWS types from Hacker news e
 
 It also exposes an API  for data consumption. 
 
-This web application also runs a schedule job every  5 minutes to sync the published news in the external API to the DB.
+This web application also runs a scheduled job every  5 minutes to sync the published news in the external API to the DB.
 
 Tested exposed API for data consumption to ensure efficiency using Django Rest Framework.
 
