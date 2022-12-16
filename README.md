@@ -1,7 +1,7 @@
 # Navigate-News
 A  powerful web application that curates different NEWS types from Hacker news external API making it easy for users to access all the NEWS in one place.  
 
-It also exposes an API  for data consumption. 
+It also exposes an API  for data consumption @ https://sotomi-navigatenews.herokuapp.com/api/news/
 
 This web application also runs a scheduled job every  5 minutes to sync the published news in the external API to the DB.
 
